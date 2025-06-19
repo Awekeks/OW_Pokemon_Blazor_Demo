@@ -1,7 +1,6 @@
 ﻿<MudDrawer @bind-Open=IsDrawerOpen ClipMode=DrawerClipMode.Always>
     <MudNavMenu>
-        <!-- TODO: centralize paths -->
-        <MudNavLink Href="/">Home</MudNavLink>
-        <MudNavLink Href="/pokemons">Pokemons</MudNavLink>
+        <MudNavLink Href="@RouteCatalog.Home">Home</MudNavLink>
+        <MudNavLink Href="@RouteCatalog.Pokemons">Pokemons</MudNavLink>
     </MudNavMenu>
 </MudDrawer>

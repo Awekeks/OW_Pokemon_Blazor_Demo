@@ -21,18 +21,39 @@
         {
             <MudCardHeader>
                 <MudImage Src="@_pokemonDetails.Sprites.Front_Default" Alt="Front Default" />
-                <MudText Typo="Typo.h5">@_pokemonDetails.Name</MudText>
+                <MudGrid>
+                    <MudItem>
+                        <MudText Typo="Typo.h5">@_pokemonDetails.Name</MudText>
+                    </MudItem>
+                    <MudItem>
+                        @foreach (var typeSlot in _pokemonDetails.Types)
+                        {
+                            <MudChip T="string" Color="Color.Primary">@typeSlot.Type.Name</MudChip>
+                        }
+                    </MudItem>
+                </MudGrid>
             </MudCardHeader>
             <MudCardContent>
                 <MudText>Height: @_pokemonDetails.Height</MudText>
                 <MudText>Weight: @_pokemonDetails.Weight</MudText>
+
                 @if (!string.IsNullOrEmpty(_pokemonDetails?.Cries.Legacy))
                 {
                     <br/>
                     <MudText>Cry Legacy (might be loud)</MudText>
                     <audio controls><source src="@_pokemonDetails?.Cries.Legacy" type="audio/ogg" /></audio>
                 }
-                @* TODO: abilities, types *@
+
+                @if (_pokemonDetails?.Abilities.Count() > 0)
+                {
+                    <MudDivider />
+                    <MudList T="string">
+                        @foreach (var abilitySlot in _pokemonDetails.Abilities)
+                        {
+                            <MudListItem Text="@abilitySlot.Ability.Name" Disabled="true" />
+                        }
+                    </MudList>
+                }
             </MudCardContent>
         }
     }

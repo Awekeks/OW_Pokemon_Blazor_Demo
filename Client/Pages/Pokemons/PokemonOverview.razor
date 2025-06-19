@@ -5,13 +5,13 @@
 
 <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
     <MudGrid>
-        <MudItem xs="12" sm="6" md="4">
+        <MudItem xs="12" sm="6">
             <PokemonList OnPokemonSelected="OnPokemonSelected" />
         </MudItem>
 
         @if (_selectedPokemon != null)
         {
-            <MudItem xs="12" sm="6" md="4">
+            <MudItem xs="12" sm="6">
                 <PokemonDetails PokemonList="_selectedPokemon" />
             </MudItem>
         }
