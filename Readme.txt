@@ -12,6 +12,7 @@ Warum z.B. localStorage nur hier nutzbar ist:
 
 
 Moegliche Erweiterungen:
+- Liste erweitern, dass mehr Pokemon angezeigt werden können
 - MudBlazor Componenten in eigener Componenten Bibliothek wrappen z.B. MudText => OwText
 - Extensions Methoden fuer Services hinzufuegen, um die Services einfacher nutzbar zu machen => weniger Boilerplate Code je Service
 - mehr Content Anzeigen
