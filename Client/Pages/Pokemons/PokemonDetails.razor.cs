@@ -10,13 +10,26 @@ public partial class PokemonDetails
     public PokemonOverviewDto? PokemonOverview { get; set; }
 
     private PokemonDetailsDto? _pokemonDetails;
+    private bool _isLoading;
     private CancellationTokenSource _cancellationTokenSource = new();
 
     protected override async Task OnParametersSetAsync()
     {
         if (PokemonOverview != null)
         {
-            _pokemonDetails = await pokemonDetailService.GetPokemonDetailAsync(PokemonOverview.Url, _cancellationTokenSource.Token);
+            _isLoading = true;
+            try
+            {
+                _pokemonDetails = await pokemonDetailService.GetPokemonDetailAsync(PokemonOverview.Url, _cancellationTokenSource.Token);
+            }
+            catch (HttpRequestException)
+            {
+                // Handle cancellation if needed
+            }
+            finally
+            {
+                _isLoading = false;
+            }
         }
     }
 }

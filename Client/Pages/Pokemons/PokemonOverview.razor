@@ -8,18 +8,31 @@
 <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
     <MudGrid>
         <MudItem xs="12" sm="6" md="4">
-            <MudTable T="PokemonOverviewDto" Items="@_pokemons" Hover="true" Breakpoint="Breakpoint.Sm" OnRowClick="OnPokemonSelected">
+            <MudTable T="PokemonOverviewDto" Items="@_pokemons" Filter="new Func<PokemonOverviewDto, bool>(FilterPokemon)" OnRowClick="OnPokemonSelected" Loading="@_isLoading" Hover="true" Breakpoint="Breakpoint.Sm">
+                <ToolBarContent>
+                    <MudText Typo="Typo.h6">Periodic Elements</MudText>
+                    <MudSpacer />
+                    <MudTextField @bind-Value="searchPokemon" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Slass="mt-0"></MudTextField>
+                </ToolBarContent>
+
                 <HeaderContent>
                     <MudTh>Name</MudTh>
                 </HeaderContent>
                 <RowTemplate>
                     <MudTd DataLabel="Name">@context.Name</MudTd>
                 </RowTemplate>
+
+                <PagerContent>
+                    <MudTablePager />
+                </PagerContent>
             </MudTable>
         </MudItem>
 
-        <MudItem xs="12" sm="6" md="4">
-            <PokemonDetails PokemonOverview="_selectedPokemon" />
-        </MudItem>
+        @if (_selectedPokemon != null)
+        {
+            <MudItem xs="12" sm="6" md="4">
+                <PokemonDetails PokemonOverview="_selectedPokemon" />
+            </MudItem>
+        }
     </MudGrid>
 </MudContainer>

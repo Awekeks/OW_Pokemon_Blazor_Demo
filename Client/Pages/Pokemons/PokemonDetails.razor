@@ -2,4 +2,35 @@
 
 @inject IPokemonDetailService pokemonDetailService
 
-<h3>PokemonDetails</h3>
+<MudCard Class="pa-4">
+    <h3>PokemonDetails</h3>
+    @if (_isLoading)
+    {
+        <MudProgressCircular Size="Size.Large" Indeterminate="_isLoading" />
+    }
+    else
+    {
+        @if (_pokemonDetails == null)
+        {
+            <MudText Color="Color.Error">Pokemon details not found.</MudText>
+        }
+        else
+        {
+            <MudCardHeader>
+                <MudImage Src="@_pokemonDetails.Sprites.Front_Default" Alt="Front Default" />
+                <MudText Typo="Typo.h5">@_pokemonDetails.Name</MudText>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText>Height: @_pokemonDetails.Height</MudText>
+                <MudText>Weight: @_pokemonDetails.Weight</MudText>
+                @if (string.IsNullOrEmpty(_pokemonDetails?.Cries.Legacy))
+                {
+                    <br/>
+                    <MudText>Cry Legacy</MudText>
+                    <audio controls><source src="@_pokemonDetails?.Cries.Legacy" type="audio/ogg" /></audio>
+                }
+                @* TODO: abilities, types *@
+            </MudCardContent>
+        }
+    }
+</MudCard>
