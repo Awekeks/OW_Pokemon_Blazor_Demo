@@ -2,7 +2,7 @@
 
 public partial class MainLayout
 {
-    bool _drawerOpen = true;
+    private bool _drawerOpen = true;
 
     void DrawerToggle()
     {

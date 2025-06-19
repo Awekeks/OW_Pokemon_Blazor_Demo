@@ -1,0 +1,26 @@
+﻿@namespace Client.Components
+
+@using Models.Pokemons
+@using Services.Pokemons
+
+@inject IPokemonListService pokemonOverviewService
+
+<MudTable T="PokemonListDto" Items="@_pokemons" Filter="new Func<PokemonListDto, bool>(FilterPokemon)" OnRowClick="PokemonSelected" Loading="@_isLoading" Hover="true" Breakpoint="Breakpoint.Sm">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Periodic Elements</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="searchPokemon" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Slass="mt-0"></MudTextField>
+    </ToolBarContent>
+
+    <HeaderContent>
+        <MudTh>Name</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+    </RowTemplate>
+
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+</MudTable>
+

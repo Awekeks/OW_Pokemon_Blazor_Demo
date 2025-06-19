@@ -1,9 +1,12 @@
-﻿@using Services.Pokemons
+﻿@namespace Client.Components
+
+@using Services.Pokemons
 
 @inject IPokemonDetailService pokemonDetailService
 
 <MudCard Class="pa-4">
-    <h3>PokemonDetails</h3>
+    <MudText Typo="Typo.h5">PokemonDetails</MudText>
+    <MudDivider/>
     @if (_isLoading)
     {
         <MudProgressCircular Size="Size.Large" Indeterminate="_isLoading" />
@@ -23,10 +26,10 @@
             <MudCardContent>
                 <MudText>Height: @_pokemonDetails.Height</MudText>
                 <MudText>Weight: @_pokemonDetails.Weight</MudText>
-                @if (string.IsNullOrEmpty(_pokemonDetails?.Cries.Legacy))
+                @if (!string.IsNullOrEmpty(_pokemonDetails?.Cries.Legacy))
                 {
                     <br/>
-                    <MudText>Cry Legacy</MudText>
+                    <MudText>Cry Legacy (might be loud)</MudText>
                     <audio controls><source src="@_pokemonDetails?.Cries.Legacy" type="audio/ogg" /></audio>
                 }
                 @* TODO: abilities, types *@

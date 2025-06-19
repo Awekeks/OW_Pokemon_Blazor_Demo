@@ -8,7 +8,7 @@ public static class ServiceCollectionExtensions
     public static void AddOWServices(this IServiceCollection services)
     {
         // Services
-        services.AddScoped<IPokemonOverviewService, PokemonOverviewService>();
+        services.AddScoped<IPokemonListService, PokemonListService>();
         services.AddScoped<IPokemonDetailService, PokemonDetailService>();
     }
 }

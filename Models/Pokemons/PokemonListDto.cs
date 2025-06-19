@@ -1,6 +1,6 @@
 ﻿namespace Models.Pokemons;
 
-public class PokemonOverviewDto
+public class PokemonListDto
 {
     public string Name { get; set; }
     public string Url { get; set; }

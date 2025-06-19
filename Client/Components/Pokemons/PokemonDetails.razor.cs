@@ -1,30 +1,32 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Models.Pokemons;
+using MudBlazor;
 
-namespace Client.Pages.Pokemons;
+namespace Client.Components;
 
 public partial class PokemonDetails
 {
 
     [Parameter]
-    public PokemonOverviewDto? PokemonOverview { get; set; }
+    public PokemonListDto? PokemonList { get; set; }
+
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     private PokemonDetailsDto? _pokemonDetails;
     private bool _isLoading;
-    private CancellationTokenSource _cancellationTokenSource = new();
 
     protected override async Task OnParametersSetAsync()
     {
-        if (PokemonOverview != null)
+        if (PokemonList != null)
         {
             _isLoading = true;
             try
             {
-                _pokemonDetails = await pokemonDetailService.GetPokemonDetailAsync(PokemonOverview.Url, _cancellationTokenSource.Token);
+                _pokemonDetails = await pokemonDetailService.GetPokemonDetailAsync(PokemonList.Url, _cancellationTokenSource.Token);
             }
             catch (HttpRequestException)
             {
-                // Handle cancellation if needed
+                snackbar.Add($"Failed to load {PokemonList.Name} details. Please try again later.", Severity.Error);
             }
             finally
             {

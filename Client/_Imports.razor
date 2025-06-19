@@ -7,7 +7,11 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Http
 @using Microsoft.JSInterop
 @using MudBlazor
+@using Blazored.LocalStorage
 @using Client
+@using Client.Code.Constants;
+@using Client.Components
 @using Client.Layout
 
-@inject Blazored.LocalStorage.ILocalStorageService localStorage
+@inject ILocalStorageService localStorage
+@inject ISnackbar snackbar

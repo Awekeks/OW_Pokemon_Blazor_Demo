@@ -1,7 +1,9 @@
-﻿@inherits LayoutComponentBase
+﻿@using Client.Code.Theme
+
+@inherits LayoutComponentBase
 
 @* Required *@
-<MudThemeProvider />
+<MudThemeProvider Theme="@(new OwTheme())" IsDarkMode="true" />
 <MudPopoverProvider />
 
 @* Needed for dialogs *@
@@ -11,7 +13,6 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <!-- TODO: improve -->
     <MudAppBar>
         <MudIconButton Icon=@Icons.Material.Filled.Menu Color=Color.Inherit Edge=Edge.Start OnClick=@((e) => DrawerToggle()) />
         OW Blazor Demo App
