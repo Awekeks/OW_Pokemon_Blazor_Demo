@@ -1,0 +1,25 @@
+﻿@page "/pokemons"
+
+@using Models.Pokemons
+@using Services.Pokemons
+
+@inject IPokemonOverviewService pokemonOverviewService
+
+<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+    <MudGrid>
+        <MudItem xs="12" sm="6" md="4">
+            <MudTable T="PokemonOverviewDto" Items="@_pokemons" Hover="true" Breakpoint="Breakpoint.Sm" OnRowClick="OnPokemonSelected">
+                <HeaderContent>
+                    <MudTh>Name</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Name">@context.Name</MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudItem>
+
+        <MudItem xs="12" sm="6" md="4">
+            <PokemonDetails PokemonOverview="_selectedPokemon" />
+        </MudItem>
+    </MudGrid>
+</MudContainer>

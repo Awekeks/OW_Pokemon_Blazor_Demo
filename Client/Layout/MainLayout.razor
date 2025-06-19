@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+
+@* Required *@
+<MudThemeProvider />
+<MudPopoverProvider />
+
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
+
+<MudLayout>
+    <!-- TODO: improve -->
+    <MudAppBar>
+        <MudIconButton Icon=@Icons.Material.Filled.Menu Color=Color.Inherit Edge=Edge.Start OnClick=@((e) => DrawerToggle()) />
+        My Application
+    </MudAppBar>
+    <NavMenu IsDrawerOpen=_drawerOpen />
+
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
